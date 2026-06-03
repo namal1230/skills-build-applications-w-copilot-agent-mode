@@ -31,8 +31,11 @@ DEBUG = True
 # Allow codespace and localhost hosts
 CODESPACE_NAME = os.environ.get('CODESPACE_NAME')
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['http://localhost', 'http://127.0.0.1']
 if CODESPACE_NAME:
-    ALLOWED_HOSTS.append(f'{CODESPACE_NAME}-8000.app.github.dev')
+    codespace_host = f'{CODESPACE_NAME}-8000.app.github.dev'
+    ALLOWED_HOSTS.append(codespace_host)
+    CSRF_TRUSTED_ORIGINS.append(f'https://{codespace_host}')
 
 
 # Application definition
